@@ -3,7 +3,7 @@ let estado = "menu";
 let paciente, medico, dia, hora;
 
 console.log(
-  "Escolha uma opção:\n1. Adicionar consulta\n2. Cancelar consulta\n3. Listar consultas\n4. Sair\n5.Atualizar consulta"
+  "Escolha uma opção:\n1. Adicionar consulta\n2. Cancelar consulta\n3. Listar consultas\n4. Sair\n5. Atualizar consulta"
 );
 process.stdin.on("data", function (data) {
   let input = data.toString().trim();
@@ -42,11 +42,11 @@ process.stdin.on("data", function (data) {
     paciente = input;
     estado = "adicionar_medico";
     console.log("Digite o nome do médico da consulta:");
-  } else if (estado === "adicionar_paciente") {
+  } else if (estado === "adicionar_medico") {
     medico = input;
     estado = "adicionar_dia";
     console.log("Digite o dia a consulta:");
-  } else if (estado === "adicionar_medico") {
+  } else if (estado === "adicionar_dia") {
     dia = input;
     estado = "adicionar_hora";
     console.log("Digite o horário da consulta:");
@@ -83,5 +83,7 @@ process.stdin.on("data", function (data) {
     console.log(
       "Escolha uma opção:\n1. Adicionar consulta\n2. Cancelar consulta\n3. Listar consultas\n4. Sair\n5.Atualizar consulta"
     );
+  }
+  if (estado === "atualizar_cadastro") {
   }
 });
