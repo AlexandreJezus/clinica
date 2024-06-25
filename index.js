@@ -1,4 +1,4 @@
-const consulta = [];
+let consulta = [];
 let estado = "menu";
 let paciente, medico, dia, hora;
 
@@ -20,9 +20,9 @@ process.stdin.on("data", function (data) {
         console.log("Nenhuma consulta marcada.");
       } else {
         console.log("Consultas marcadas:");
-        for (let paciente of consulta) {
+        for (let pacientes of consulta) {
           console.log(
-            `Paciente: ${paciente}, Médico: ${medico}, Data: ${dia}, Horário: ${hora}`
+            `Paciente: ${pacientes.paciente}, Médico: ${pacientes.medico}, Data: ${pacientes.dia}, Horário: ${pacientes.hora}`
           );
         }
       }
@@ -37,11 +37,11 @@ process.stdin.on("data", function (data) {
     }
   } else if (estado === "adicionar_consulta") {
     paciente = input;
-    estado = "adicionar_paciente";
+    estado = "adicionar_medico";
     console.log("Digite o nome do médico da consulta:");
   } else if (estado === "adicionar_paciente") {
     medico = input;
-    estado = "adicionar_medico";
+    estado = "adicionar_dia";
     console.log("Digite o dia a consulta:");
   } else if (estado === "adicionar_medico") {
     dia = input;
@@ -64,7 +64,9 @@ process.stdin.on("data", function (data) {
     let pacienteRemover = input;
     let encontrado = false;
     for (let i = 0; i < consulta.length; i++) {
-      if (consulta[i].nome.toLowerCase() === pacienteRemover.toLowerCase()) {
+      if (
+        consulta[i].paciente.toLowerCase() === pacienteRemover.toLowerCase()
+      ) {
         consulta.splice(i, 1);
         console.log("Livro removido com sucesso!");
         encontrado = true;
