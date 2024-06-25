@@ -1,7 +1,4 @@
-//crie uma biclioteca que voce pode adicionar, remover, listar livros,
-// os livros possuem os atributos nome, tamanho, autor e genero.
-
-const consulta = [];
+let consulta = [];
 let estado = "menu";
 let paciente, medico, dia, hora;
 
@@ -23,9 +20,9 @@ process.stdin.on("data", function (data) {
         console.log("Nenhuma consulta marcada.");
       } else {
         console.log("Consultas marcadas:");
-        for (let paciente of consulta) {
+        for (let pacientes of consulta) {
           console.log(
-            `Paciente: ${paciente}, Médico: ${medico}, Data: ${dia}, Horário: ${hora}`
+            `Paciente: ${pacientes.paciente}, Médico: ${pacientes.medico}, Data: ${pacientes.dia}, Horário: ${pacientes.hora}`
           );
         }
       }
@@ -37,21 +34,21 @@ process.stdin.on("data", function (data) {
       process.exit();
     } else if (input === "5") {
       estado = "atualizar_consulta";
-      console.log("Digite o nome do paciente para atualizar sua consulta:");
+      console.log("Digite o nome do paciente para atualizar a consulta:");
     } else {
       console.log("Opção inválida. Selecione novamente.");
     }
   } else if (estado === "adicionar_consulta") {
     paciente = input;
-    estado = "adicionar_consulta";
-    console.log("Digite o nome do médico da consulta:");
-  } else if (estado === "adicionar_medico") {
-    medico = input;
     estado = "adicionar_medico";
-    console.log("Digite o dia a consulta:");
-  } else if (estado === "adicionar_dia") {
-    dia = input;
+    console.log("Digite o nome do médico da consulta:");
+  } else if (estado === "adicionar_paciente") {
+    medico = input;
     estado = "adicionar_dia";
+    console.log("Digite o dia a consulta:");
+  } else if (estado === "adicionar_medico") {
+    dia = input;
+    estado = "adicionar_hora";
     console.log("Digite o horário da consulta:");
   } else if (estado === "adicionar_hora") {
     hora = input;
@@ -70,20 +67,21 @@ process.stdin.on("data", function (data) {
     let pacienteRemover = input;
     let encontrado = false;
     for (let i = 0; i < consulta.length; i++) {
-      if (consulta[i].nome.toLowerCase() === pacienteRemover.toLowerCase()) {
+      if (
+        consulta[i].paciente.toLowerCase() === pacienteRemover.toLowerCase()
+      ) {
         consulta.splice(i, 1);
-        console.log("Consulta removida com sucesso!");
+        console.log("Livro removido com sucesso!");
         encontrado = true;
         break;
       }
     }
     if (!encontrado) {
-      console.log("Consulta não encontrada!");
+      console.log("Livro não encontrado!");
     }
     estado = "menu";
     console.log(
       "Escolha uma opção:\n1. Adicionar consulta\n2. Cancelar consulta\n3. Listar consultas\n4. Sair\n5.Atualizar consulta"
     );
-  } else if (estado === "atualizar_consulta") {
   }
 });
