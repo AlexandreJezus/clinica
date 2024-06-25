@@ -39,11 +39,11 @@ process.stdin.on("data", function (data) {
     paciente = input;
     estado = "adicionar_medico";
     console.log("Digite o nome do médico da consulta:");
-  } else if (estado === "adicionar_medico") {
+  } else if (estado === "adicionar_paciente") {
     medico = input;
     estado = "adicionar_dia";
     console.log("Digite o dia a consulta:");
-  } else if (estado === "adicionar_dia") {
+  } else if (estado === "adicionar_medico") {
     dia = input;
     estado = "adicionar_hora";
     console.log("Digite o horário da consulta:");
