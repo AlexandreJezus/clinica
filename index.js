@@ -1,6 +1,3 @@
-//crie uma biclioteca que voce pode adicionar, remover, listar livros,
-// os livros possuem os atributos nome, tamanho, autor e genero.
-
 const consulta = [];
 let estado = "menu";
 let paciente, medico, dia, hora;
@@ -40,15 +37,15 @@ process.stdin.on("data", function (data) {
     }
   } else if (estado === "adicionar_consulta") {
     paciente = input;
-    estado = "adicionar_consulta";
+    estado = "adicionar_paciente";
     console.log("Digite o nome do médico da consulta:");
-  } else if (estado === "adicionar_medico") {
+  } else if (estado === "adicionar_paciente") {
     medico = input;
     estado = "adicionar_medico";
     console.log("Digite o dia a consulta:");
-  } else if (estado === "adicionar_dia") {
+  } else if (estado === "adicionar_medico") {
     dia = input;
-    estado = "adicionar_dia";
+    estado = "adicionar_hora";
     console.log("Digite o horário da consulta:");
   } else if (estado === "adicionar_hora") {
     hora = input;
